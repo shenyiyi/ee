@@ -1,0 +1,386 @@
+<html lang="en">
+	<head>
+		<title>远英教育</title>
+		
+		<meta http-equiv="content-type" content="text/html;charset=utf-8">
+		<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+		<link rel="stylesheet" href="assets/css/bootstrap.css">
+		<link rel="stylesheet" href="assets/css/bootstrap-select.css">
+		<link rel="stylesheet" href="css/leftnav.css">
+		<link rel="stylesheet" href="css/styles.css">
+		<link rel="stylesheet" href="assets/ztree/css/zTreeStyle/zTreeStyle.css" type="text/css">
+		
+		<script src="assets/js/jquery-1.10.2.js"></script>
+		<script src="assets/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="assets/js/bootstrap-paginator.js"></script>
+		<script src="assets/js/bootstrap-select.js"></script>
+		
+		
+		<script src="../myjs/menu.js"></script>
+		<script type="text/javascript" src="assets/ztree/js/jquery.ztree.core.js"></script>
+	    <script type="text/javascript" src="assets/ztree/js/jquery.ztree.excheck.js"></script>
+	    <script type="text/javascript" src="assets/ztree/js/jquery.ztree.exedit.js"></script>
+	    
+		<script type="text/javascript" src="layer/layer.js"></script>
+		
+	</head>
+	<body style="min-width:1300px;overflow:auto;">
+		<input id="roleId" value="<%=roleId%>"/>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-2 col-lg-2 col-xs-2 col-md-2 " style="width: 13%;">
+					<div style="width:100%;height:100%;background-color:#1B2737;min-height:600px;">
+						<div style="width:100%;height:20%;text-align:center;background-color: #182332;">
+							<div style="width:100%;min-height:100px;padding-top:20px">
+								<img src="img/new/login.png" style="width:100px;height:100px;border:3px solid #33A414;border-radius:50%"/>
+							</div>
+						</div>
+						<!--菜单栏权限管理：div的ID统一action跳转路径  -->
+						<div id="menu"><input type="text" id="active" value="setingManage" style="display: none;"></div>
+					</div>
+					
+				</div>
+				<div class="col-sm-10 col-lg-10 col-xs-10 col-md-10" style="width: 87%;">
+					 <div style="width:100%;height:95%;">
+						 <div style="width:100%;height:8%;background-color:#2B3953;min-height:50px">
+						 		<form>
+								  <div class="form-group" style="padding-right:30px;padding-top:12px">
+								   	<div id="top"></div>
+								   	</div>
+								</form>
+						</div>
+						 <div style="width:100%;height:12%;min-height:80px">
+							
+							<div style="width:100%;height:100%;float:left;background-color:#2C476E;color:white" >
+								<div style="width:100%;height:30%"></div>
+								<div style="width:100%;height:40%">
+									<div style="width:100%;min-height:140px">
+									<div style="font-size:25px;padding-left:20px">角色编辑
+									<img src="../img/parkingLot_add.png" style="width:170px;height:auto;float:right;padding-right:20px;" onclick="add()"/>
+									<br><small style="font-size:10px">RoleEidt</small>
+									</div>
+									</div>
+								</div>
+								<div style="width:100%;height:30%"></div>
+							</div>
+						</div> 
+						<div style="width:100%;height:80%;">
+							
+							<div style="width:100%;height:100%">
+								<div class="container" style="padding:1em 1em">
+									<div class="row">
+										
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+											<div style="width:100%;height:100%">
+												<h3>选择区域</h3>
+												<ul id="treeDemo" class="ztree"></ul>
+												<input id="tempId" name="tempId" style="display:block" type="text" readonly value="" />
+											</div>
+											
+										</div>
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+											<div style="width:100%;height:100%">
+												<h3>选择权限</h3>
+												<ul id="treeDemo1" class="ztree"></ul>
+												<input id="tempId1" name="tempId1" style="display:block" type="text" readonly value="" />
+											</div>
+											
+										</div>
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+											<form class="bs-example bs-example-form" role="form">
+												<div class="input-group" style="width:20em">
+													<span class="input-group-addon">角色名称</span>
+													<input type="text" class="form-control" placeholder="请填写名称" id="name">
+												</div>
+											</form>
+											<br>
+											<form class="bs-example bs-example-form" role="form">
+												<div class="input-group" style="width:20em">
+													<span class="input-group-addon">备注</span>
+													<textarea rows="3" cols="29" id="remark"></textarea>
+												</div>
+											</form>
+											</br>
+											<form class="bs-example bs-example-form" role="form">
+												<div class="input-group" style="width:20em">
+													<button class="form-control" onclick="edit()">提交</button>
+												</div>
+											</form>
+											
+										</div>
+									</div>
+									</div>
+								
+								
+							</div>
+							
+						</div> 
+					</div> 
+				</div>
+			</div>
+		</div>
+		
+	</body>
+<SCRIPT type="text/javascript">
+		function edit(){
+			
+			if($("#name").val()==""){
+				alert("用户名不能为空");
+				return false;
+			}else{
+				var roleId = $("#roleId").val();
+				var name = $("#name").val();
+				var remark = $("#remark").val();
+				var tempId = $("#tempId").val();
+				var tempId1 = $("#tempId1").val();
+			
+				$.ajax({
+					type : 'post',
+			 		dataType : 'json',
+			 		url : '/RoleEdit',
+			 		data : {name:name,remark:remark,tempId:tempId,tempId1:tempId1,roleId:roleId},	
+				    success:function(data){
+				    	if(data.ret_code == 1){
+				    		window.location.href="roleInfo";
+				    	}
+				    	
+				    }
+				
+				});
+				
+			}
+		}
+	
+	
+	$(document).ready(function(){
+		var roleId = $("#roleId").val();
+		$.ajax({
+			type : 'post',
+	 		dataType : 'json',
+	 		url : '/findRoleById',
+	 		data : {roleId:roleId},		
+	 		success: function (msg) {
+	 			
+	 			$("#name").val(msg.roleName);
+	 			$("#remark").val(msg.Remark);
+	 			$("#tempId").val(msg.areaJson);
+	 			$("#tempId1").val(msg.competenceJson);
+	 		}
+		});
+	
+		//区域设置
+		var setting = {
+			check: {
+				enable: true,
+				chkboxType: {"Y":"", "N":""}
+			},
+			view: {
+				dblClickExpand: false
+			},
+			data: {
+				simpleData: {
+					enable: true
+				}
+			},
+			callback: {
+				beforeClick: beforeClick,
+				onCheck: onCheck
+			}
+		};
+
+		function beforeClick(treeId, treeNode) {
+			var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+			zTree.checkNode(treeNode, !treeNode.checked, null, true);
+			return false;
+		}
+		//父节点不显示多选
+		function checkById(){
+			var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+			var nodes = zTree.transformToArray(zTree.getNodes());
+			for(var i = 0;i < nodes.length;i++){
+				var id = nodes[i].id;
+				if(id == 1){
+					node = zTree.getNodeByParam("id", id, null);
+					node.nocheck = true;
+					zTree.updateNode(node);
+				} 
+			}
+		}
+		var code;
+		//选择关联
+		function setCheck() {
+			var zTree = $.fn.zTree.getZTreeObj("treeDemo"),
+			type = { "Y":"s", "N":"s"};
+			zTree.setting.check.chkboxType = type;
+			showCode('setting.check.chkboxType = { "Y" : "' + type.Y + '", "N" : "' + type.N + '" };');
+		}
+		function showCode(str) {
+			if (!code) code = $("#code");
+			code.empty();
+			code.append("<li>"+str+"</li>");
+		}
+		
+		//选择的值
+		function onCheck(e, treeId, treeNode) {
+			
+			var zTree = $.fn.zTree.getZTreeObj("treeDemo"),
+			nodes = zTree.getCheckedNodes(true),
+			v = "";
+			for (var i=0, l=nodes.length; i<l; i++) {
+				v += nodes[i].id + ",";
+			}
+			var cityObj = $("#tempId");
+			<!--cityObj.attr("value", v);-->
+			cityObj.val(v);
+		}
+		
+		function showMenu() {
+			var cityObj = $("#citySel");
+			var cityOffset = $("#citySel").offset();
+			$("#menuContent").css({left:cityOffset.left + "px", top:cityOffset.top + cityObj.outerHeight() + "px"}).slideDown("fast");
+			$("body").bind("mousedown", onBodyDown);
+		}
+		function hideMenu() {
+			$("#menuContent").fadeOut("fast");
+			$("body").unbind("mousedown", onBodyDown);
+		}
+		function onBodyDown(event) {
+			if (!(event.target.id == "menuBtn" || event.target.id == "citySel" || event.target.id == "menuContent" || $(event.target).parents("#menuContent").length>0)) {
+				hideMenu();
+			}
+		}
+
+		
+			$.ajax({
+				type : 'post',
+		 		dataType : 'json',
+		 		url : '/queryArea',
+		 		data : {},		
+		 		success: function (msg) {
+		 			zNodes = JSON.parse(JSON.stringify(msg));
+			        $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+			        setCheck();
+					var treeObj = $.fn.zTree.getZTreeObj("treeDemo"); 
+					treeObj.expandAll(true);
+					checkById();
+					//根据id反显
+    				var ids = $("#tempId").val();
+    				var id = ids.split(",");
+    				for(var i = 0;i<id.length;i++){
+    					//console.log(id[i]);
+    					var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+    					zTree.checkNode(zTree.getNodeByParam("id",id[i]),true); 
+    				}
+			    }
+			});
+	
+	//权限设置
+	var setting1 = {
+				check: {
+					enable: true,
+					chkboxType: {"Y":"", "N":""}
+				},
+				view: {
+					dblClickExpand: false
+				},
+				data: {
+					simpleData: {
+						enable: true
+					}
+				},
+				callback: {
+					beforeClick: beforeClick1,
+					onCheck: onCheck1
+				}
+			};
+	
+			function beforeClick1(treeId, treeNode) {
+				var zTree = $.fn.zTree.getZTreeObj("treeDemo1");
+				zTree.checkNode(treeNode, !treeNode.checked, null, true);
+				return false;
+			}
+			//父节点不显示多选
+			function checkById1(){
+				var zTree = $.fn.zTree.getZTreeObj("treeDemo1");
+				var nodes = zTree.transformToArray(zTree.getNodes());
+				for(var i = 0;i < nodes.length;i++){
+					var id = nodes[i].id;
+					if(id == 1){
+						node = zTree.getNodeByParam("id", id, null);
+						node.nocheck = true;
+						zTree.updateNode(node);
+					} 
+				}
+			}
+			var code1;
+			//选择关联
+			function setCheck1() {
+				var zTree = $.fn.zTree.getZTreeObj("treeDemo1"),
+				type = { "Y":"s", "N":"s"};
+				zTree.setting.check.chkboxType = type;
+				showCode('setting.check.chkboxType = { "Y" : "' + type.Y + '", "N" : "' + type.N + '" };');
+			}
+			function showCode1(str) {
+				if (!code) code = $("#code");
+				code.empty();
+				code.append("<li>"+str+"</li>");
+			}
+			
+			//选择的值
+			function onCheck1(e, treeId, treeNode) {
+				var zTree = $.fn.zTree.getZTreeObj("treeDemo1"),
+				nodes = zTree.getCheckedNodes(true),
+				v = "";
+				for (var i=0, l=nodes.length; i<l; i++) {
+					v += nodes[i].id + ",";
+				}
+				var cityObj = $("#tempId1");
+				<!--cityObj.attr("value", v);-->
+				cityObj.val(v);
+			}
+	
+			function showMenu1() {
+				var cityObj = $("#citySel");
+				var cityOffset = $("#citySel").offset();
+				$("#menuContent").css({left:cityOffset.left + "px", top:cityOffset.top + cityObj.outerHeight() + "px"}).slideDown("fast");
+				$("body").bind("mousedown", onBodyDown);
+			}
+			function hideMenu1() {
+				$("#menuContent").fadeOut("fast");
+				$("body").unbind("mousedown", onBodyDown);
+			}
+			function onBodyDown1(event) {
+				if (!(event.target.id == "menuBtn" || event.target.id == "citySel" || event.target.id == "menuContent" || $(event.target).parents("#menuContent").length>0)) {
+					hideMenu1();
+				}
+			}
+	
+			$.ajax({
+				type : 'post',
+		 		dataType : 'json',
+		 		url : '/queryCompetence',
+		 		data : {},		
+		 		success: function (msg) {
+		 			zNodes = JSON.parse(JSON.stringify(msg));
+			        $.fn.zTree.init($("#treeDemo1"), setting1, zNodes);
+			        setCheck1();
+					var treeObj = $.fn.zTree.getZTreeObj("treeDemo1"); 
+					treeObj.expandAll(true);
+					checkById1();
+					//根据id反显
+    				var ids = $("#tempId1").val();
+    				var id = ids.split(",");
+    				for(var i = 0;i<id.length;i++){
+    					//console.log(id[i]);
+    					var zTree = $.fn.zTree.getZTreeObj("treeDemo1");
+    					zTree.checkNode(zTree.getNodeByParam("id",id[i]),true); 
+    				}
+			    }
+			});
+			
+			});
+	</SCRIPT>
+	 
+		
+
+</html>

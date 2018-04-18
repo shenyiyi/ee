@@ -1,0 +1,104 @@
+<html lang="en">
+	<head>
+		<title>远英教育</title>
+		
+		<meta http-equiv="content-type" content="text/html;charset=utf-8">
+		<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+		<link rel="stylesheet" href="assets/css/bootstrap.css">
+		<link rel="stylesheet" href="assets/css/bootstrap-select.css">
+		<link rel="stylesheet" href="css/leftnav.css">
+		<link rel="stylesheet" href="css/styles.css">
+		<link rel="stylesheet" href="css/zTreeStyle/zTreeStyle.css">
+		<script src="assets/js/jquery-1.10.2.js"></script>
+		<script src="assets/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="assets/js/bootstrap-paginator.js"></script>
+		<script src="assets/js/bootstrap-select.js"></script>
+		
+		<script src="../myjs/role.js"></script>
+		<script src="../myjs/menu.js"></script>
+		<script src="js/jquery.ztree.excheck.js"></script>
+		<script src="js/jquery.ztree.core.js"></script>
+		<script src="js/leftnav.js"></script>
+		<script type="text/javascript" src="layer/layer.js"></script>
+		<script type="text/javascript" src="js/prefixfree.min.js"></script>
+		
+	</head>
+	<body style="min-width:1300px;overflow:auto;">
+	
+		
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-2 col-lg-2 col-xs-2 col-md-2 " style="width: 13%;">
+					<div style="width:100%;height:100%;background-color:#1B2737;min-height:600px;">
+						<div style="width:100%;height:20%;text-align:center;background-color: #182332;">
+							<div style="width:100%;min-height:100px;padding-top:20px">
+								<img src="img/new/login.png" style="width:100px;height:100px;border:3px solid #33A414;border-radius:50%"/>
+							</div>
+						</div>
+						<!--菜单栏权限管理：div的ID统一action跳转路径  -->
+						<div id="menu"><input type="text" id="active" value="teacherManage" style="display: none;"></div>
+					</div>
+					
+				</div>
+				<div class="col-sm-10 col-lg-10 col-xs-10 col-md-10" style="width: 87%;">
+					 <div style="width:100%;height:95%;">
+						 <div style="width:100%;height:8%;background-color:#2B3953;min-height:50px">
+						 		<form>
+								  <div class="form-group" style="padding-right:30px;padding-top:12px">
+								   	<div id="top"></div>
+								   	</div>
+								</form>
+						</div>
+						 <div style="width:100%;height:12%;min-height:80px">
+							
+							<div style="width:100%;height:100%;float:left;background-color:#2C476E;color:white" >
+								<div style="width:100%;height:30%"></div>
+								<div style="width:100%;height:40%">
+									<div style="width:100%;min-height:140px">
+									<div style="font-size:25px;padding-left:20px">角色管理
+									<img src="../img/parkingLot_add.png" style="width:170px;height:auto;float:right;padding-right:20px;" onclick="add()"/>
+									<br><small style="font-size:10px">RoleManage</small>
+									</div>
+									</div>
+								</div>
+								<div style="width:100%;height:30%"></div>
+							</div>
+						</div> 
+						<div style="width:100%;height:80%;">
+							<div style="width:100%;height:95%;float:left">
+								<div style="width:100%;height:100%">
+									
+									
+									<div style="width:100%;height:85%;padding:0px 40px;">
+										
+										<div style="width:100%;height:90%;min-height:360px">
+											<form id="umform" name="umform" method="post">
+												<div id="tb"></div>
+										    </form>
+									     </div> 
+									     <div style="width:100%;height:10%;">
+								            <div id="total" style="float: left;padding-left:20px;padding-top:6px; font-size: 15px; font-weight: bold;"></div>
+							                <div id="example" style="margin:auto; float:left;padding-left:30px; text-align:center;cursor:pointer" align="center"></div>
+							            </div> 
+									     
+									</div>
+								</div>
+							</div> 
+						</div> 
+					</div> 
+				</div>
+			</div>
+		</div>
+	</body>
+<script>
+jQuery(document).ready(function(){
+	
+	query();
+	
+	
+}); 
+
+
+</script>
+	
+</html>

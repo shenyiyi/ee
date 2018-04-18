@@ -1,0 +1,67 @@
+<html lang="en">
+	<head>
+		<title>远英教育</title>
+		
+		<meta http-equiv="content-type" content="text/html;charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="assets/css/bootstrap.css">
+		
+		<script src="assets/js/jquery-1.10.2.js"></script>
+		<script src="assets/js/bootstrap.min.js"></script>
+		<script src="myjs/user.js"></script>
+		<script type="text/javascript" src="layer/layer.js"></script> 
+   
+	</head>
+	<body style="min-width:1300px;overflow:auto;">
+		<div class="container-fluid">
+			<div class="row"> 
+				<div class="col-sm-4 col-lg-4 col-xs-4 col-md-4">
+					<img src="assets/img/login.png" style="width:100%;height:100%;min-height:400px"/>
+				</div>
+				<div class="col-sm-8 col-lg-8 col-xs-8 col-md-8">
+					<div style="width:100%;height:100%;padding:20px;min-height:600px">	
+						<div style="width:100%;height:10%">
+							<!-- <div class="row">					
+								<div class="col-sm-8 col-lg-8 col-xs-8 col-md-8"></div>
+								<div class="col-sm-2 col-lg-2 col-xs-2 col-md-2"><button type="button" class="btn btn-default" onclick="searchUser()" style="width:100px;height:40px;border-radius:20px" >忘记账号</button></div>	
+								<div class="col-sm-2 col-lg-2 col-xs-2 col-md-2"><button type="button" class="btn btn-default" onclick="regist()" style="width:100px;height:40px;border-radius:20px" >立即注册</button></div>		
+							</div> -->
+						</div>	
+						<div style="width:100%;height:10%"></div>
+						<div style="width:100%;height:70%">		
+							<div style="width:80%;height:100%;margin:auto">
+								<div style="height:30%">
+									<h3><strong>直接登录你的账户</strong></h3>
+									<h5>Login directly to your account</h5>
+								</div>
+								<div style="height:60%">
+									<form id="loginform" action="login" method="post">
+									  <div class="form-group">
+									    <label for="LoginName">账户</label>
+									    <input type="text" class="form-control" id="LoginName" name="LoginName" placeholder="请输入账号" style="height:55px;font-size:20px">
+									  </div>
+									  <div class="form-group">
+									    <label for="Password">密码</label>
+									    <input type="password" class="form-control" id="Password" name="Password" placeholder="请输入密码" style="height:55px;font-size:20px" onkeydown="if(event.keyCode == 13){document.getElementById('bt').click();return false;}">
+									  </div>
+									  
+									  <!-- <div class="checkbox">
+									    <label>
+									      <input type="checkbox">记住密码
+									    </label>
+									  </div> -->
+								  	  <div style="height:40px"></div>
+									  <div align="center">
+									  <button type="button" class="btn btn-primary" id="bt" onclick="loginCheck()" style="width:185px;height:57px;border-radius:30px" >登录</button>								
+									  </div>
+									</form>
+								</div>
+							</div>							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	
+</html>
